@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Chatkit from '@pusher/chatkit-client';
-import { tokenUrl, instanceLocator } from '../../config';
+import RoomList from '../roomList';
+import MessageList from '../messageList';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  // const [roomId, setRoomId] = useState(null);
   const [joinedRooms, setJoinedRooms] = useState([]);
   const [joinableRooms, setJoinableRooms] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [roomId, setRoomId] = useState(null);
 
   const getRooms = useCallback(() => {
     currentUser.getJoinableRooms()
@@ -19,10 +21,10 @@ const App = () => {
 
   useEffect(() => {
     const chatManager = new Chatkit.ChatManager({
-      instanceLocator,
-      userId: 'jeton',
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      userId: 'admin',
       tokenProvider: new Chatkit.TokenProvider({
-        url: tokenUrl,
+        url: process.env.REACT_APP_TOKEN_URL,
       }),
     });
 
@@ -38,26 +40,34 @@ const App = () => {
     getRooms();
   }, [currentUser, getRooms]);
 
+  const subscribeToRoom = (roomID) => {
+    setMessages([]);
+    currentUser.subscribeToRoom({
+      roomId: roomID,
+      hooks: {
+        onNewMessage: (message) => {
+          setMessages([...messages, message]);
+        },
+      },
+    })
+      .then((room) => {
+        setRoomId(room.id);
+        getRooms();
+      })
+      .catch((err) => err);
+  };
 
   return (
     <div className="App">
-      {
-        currentUser && (
-          <div>
-            <h2>{currentUser.name}</h2>
-
-            <h3>Joined Rooms</h3>
-            <ul>
-              {joinedRooms.map((room) => <li key={room.id}>{room.name}</li>)}
-            </ul>
-
-            <h3>Other Rooms</h3>
-            <ul>
-              {joinableRooms.map((room) => <li key={room.id}>{room.name}</li>)}
-            </ul>
-          </div>
-        )
-      }
+      <RoomList
+        subscribeToRoom={subscribeToRoom}
+        rooms={[...joinableRooms, ...joinedRooms]}
+        roomId={roomId}
+      />
+      <MessageList
+        roomId={roomId}
+        messages={messages}
+      />
     </div>
   );
 };
