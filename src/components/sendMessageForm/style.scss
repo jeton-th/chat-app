@@ -1,0 +1,11 @@
+.send-message-form {
+  border: 1px solid #777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  input {
+    height: 50%;
+    width: 80%;
+  }
+}

@@ -3,7 +3,7 @@ import Chatkit from '@pusher/chatkit-client';
 import RoomList from '../roomList';
 import MessageList from '../messageList';
 import './style.scss';
-import NewRoomForm from '../newRoom';
+import NewRoomForm from '../newRoomForm';
 import SendMessageForm from '../sendMessageForm';
 
 const App = () => {
@@ -20,7 +20,8 @@ const App = () => {
       text: 'why are you late man',
     },
   ]);
-  const [roomId, setRoomId] = useState(1);
+  const [roomId, setRoomId] = useState(null);
+  const [roomName, setRoomName] = useState(null);
 
   const getRooms = useCallback(() => {
     currentUser.getJoinableRooms()
@@ -64,6 +65,7 @@ const App = () => {
     })
       .then((room) => {
         setRoomId(room.id);
+        setRoomName(room.name);
         getRooms();
       })
       .catch((err) => err);
@@ -79,10 +81,10 @@ const App = () => {
         />
         <NewRoomForm />
       </div>
-
       <div className="messages">
         <MessageList
           roomId={roomId}
+          roomName={roomName}
           messages={messages}
         />
         <SendMessageForm />

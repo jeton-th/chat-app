@@ -1,0 +1,13 @@
+.message-list {
+  flex-basis: 90%;
+  background-color: #fefefa;
+  box-sizing: border-box;
+  padding: 20px;
+  position: relative;
+  h2 {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 2px;
+  }
+}

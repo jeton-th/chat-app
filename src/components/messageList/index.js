@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Message from '../message';
+import './style.scss';
 
-const MessageList = ({ roomId, messages }) => {
+const MessageList = ({ roomId, roomName, messages }) => {
   // let node;
   // let shouldScroll;
 
@@ -26,17 +27,18 @@ const MessageList = ({ roomId, messages }) => {
 
   if (!roomId) {
     return (
-      <div className="message-list">
+      <div className="message-list" ref={ref}>
         <div className="join-room">
-          Join a room! &rarr;
+        &larr; Join a room!
         </div>
       </div>
     );
   }
 
   return (
-    <div ref={ref}>
-      <div className="message-list">
+    <div className="message-list" ref={ref}>
+      <h2>{roomName}</h2>
+      <div>
         {
           messages.map((message) => (
             <Message
@@ -51,13 +53,16 @@ const MessageList = ({ roomId, messages }) => {
   );
 };
 
-MessageList.propTypes = {
-  roomId: PropTypes.number,
-  messages: PropTypes.arrayOf(PropTypes.string).isRequired,
+MessageList.defaultProps = {
+  roomId: null,
+  roomName: null,
 };
 
-MessageList.defaultProps = {
-  roomId: 1,
+MessageList.propTypes = {
+  roomId: PropTypes.string,
+  roomName: PropTypes.string,
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 
 export default MessageList;
