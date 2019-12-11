@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Chatkit from '@pusher/chatkit-client';
 import RoomList from '../roomList';
 import MessageList from '../messageList';
-import './style.scss';
 import NewRoomForm from '../newRoomForm';
 import SendMessageForm from '../sendMessageForm';
+import './style.scss';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -13,15 +13,6 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
-
-  const getRooms = useCallback(() => {
-    currentUser.getJoinableRooms()
-      .then((rooms) => {
-        setJoinableRooms(rooms);
-        setJoinedRooms(currentUser.rooms);
-      })
-      .catch((err) => err);
-  }, [currentUser]);
 
   useEffect(() => {
     const chatManager = new Chatkit.ChatManager({
@@ -39,17 +30,29 @@ const App = () => {
       .catch((err) => err);
   }, []);
 
+  const getRooms = useCallback(() => {
+    currentUser.getJoinableRooms()
+      .then((rooms) => {
+        setJoinableRooms(rooms);
+        setJoinedRooms(currentUser.rooms);
+      })
+      .catch((err) => err);
+  }, [currentUser]);
+
   useEffect(() => {
     if (!currentUser) return;
     getRooms();
   }, [currentUser, getRooms]);
 
-  const subscribeToRoom = (roomID) => {
+  const subscribeToRoom = (id) => {
     setMessages([]);
+
     currentUser.subscribeToRoom({
-      roomId: roomID,
+      roomId: id,
       hooks: {
-        onMessage: (message) => setMessages([...messages, message]),
+        onMessage: (message) => {
+          setMessages((prevMessages) => ([...prevMessages, message]));
+        },
       },
     })
       .then((room) => {
@@ -83,7 +86,10 @@ const App = () => {
           roomName={roomName}
           messages={messages}
         />
-        <SendMessageForm disabled={!roomId} sendMessage={sendMessage} />
+        <SendMessageForm
+          disabled={!roomId}
+          sendMessage={sendMessage}
+        />
       </div>
     </div>
   );

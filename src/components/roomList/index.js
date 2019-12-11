@@ -12,9 +12,10 @@ const RoomList = ({ subscribeToRoom, rooms, roomId }) => {
         {orderedRooms.map((room) => {
           const active = room.id === roomId ? 'active' : '';
           return (
-            <li key={room.id} className={`room ${active}`}>
+            <li key={room.id}>
               <button
                 type="button"
+                className={`room ${active}`}
                 onClick={() => subscribeToRoom(room.id)}
               >
                 {room.name}

@@ -3,11 +3,13 @@
   background-color: #fefefa;
   box-sizing: border-box;
   padding: 20px;
+  overflow: scroll;
+  overflow-x: hidden;
   position: relative;
   h2 {
     margin: 0;
     position: absolute;
     top: 0;
-    right: 2px;
+    right: 5px;
   }
 }
