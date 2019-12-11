@@ -2,13 +2,25 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Chatkit from '@pusher/chatkit-client';
 import RoomList from '../roomList';
 import MessageList from '../messageList';
+import './style.scss';
+import NewRoomForm from '../newRoom';
+import SendMessageForm from '../sendMessageForm';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [joinedRooms, setJoinedRooms] = useState([]);
   const [joinableRooms, setJoinableRooms] = useState([]);
-  const [messages, setMessages] = useState([]);
-  const [roomId, setRoomId] = useState(null);
+  const [messages, setMessages] = useState([
+    {
+      senderId: 'jeton',
+      text: 'Hello',
+    },
+    {
+      senderId: 'valentino',
+      text: 'why are you late man',
+    },
+  ]);
+  const [roomId, setRoomId] = useState(1);
 
   const getRooms = useCallback(() => {
     currentUser.getJoinableRooms()
@@ -58,16 +70,23 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <RoomList
-        subscribeToRoom={subscribeToRoom}
-        rooms={[...joinableRooms, ...joinedRooms]}
-        roomId={roomId}
-      />
-      <MessageList
-        roomId={roomId}
-        messages={messages}
-      />
+    <div className="app">
+      <div className="rooms">
+        <RoomList
+          subscribeToRoom={subscribeToRoom}
+          rooms={[...joinableRooms, ...joinedRooms]}
+          roomId={roomId}
+        />
+        <NewRoomForm />
+      </div>
+
+      <div className="messages">
+        <MessageList
+          roomId={roomId}
+          messages={messages}
+        />
+        <SendMessageForm />
+      </div>
     </div>
   );
 };
