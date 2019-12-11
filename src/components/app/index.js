@@ -10,16 +10,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [joinedRooms, setJoinedRooms] = useState([]);
   const [joinableRooms, setJoinableRooms] = useState([]);
-  const [messages, setMessages] = useState([
-    {
-      senderId: 'jeton',
-      text: 'Hello',
-    },
-    {
-      senderId: 'valentino',
-      text: 'why are you late man',
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
 
@@ -58,9 +49,7 @@ const App = () => {
     currentUser.subscribeToRoom({
       roomId: roomID,
       hooks: {
-        onNewMessage: (message) => {
-          setMessages([...messages, message]);
-        },
+        onNewMessage: (message) => setMessages([...messages, message]),
       },
     })
       .then((room) => {
@@ -69,6 +58,14 @@ const App = () => {
         getRooms();
       })
       .catch((err) => err);
+  };
+
+  const sendMessage = (text) => {
+    currentUser.sendMessage({
+      senderId: currentUser.id,
+      text,
+      roomId,
+    });
   };
 
   return (
@@ -87,7 +84,7 @@ const App = () => {
           roomName={roomName}
           messages={messages}
         />
-        <SendMessageForm />
+        <SendMessageForm disabled={!roomId} sendMessage={sendMessage} />
       </div>
     </div>
   );

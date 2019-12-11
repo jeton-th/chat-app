@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Message from '../message';
 import './style.scss';
@@ -18,16 +18,19 @@ const MessageList = ({ roomId, roomName, messages }) => {
   //   node.scrollTop = node.scrollHeight;
   // });
 
-  const ref = useRef(null);
+  // const ref = useRef(null);
 
-  useEffect(() => {
-    console.log(ref.current.scrollTop);
-    // `ref.current` now refers to the first non-empty child
-  }, []);
+  // useEffect(() => {
+  // console.log(ref.current.scrollTop);
+  // `ref.current` now refers to the first non-empty child
+  // }, []);
 
   if (!roomId) {
     return (
-      <div className="message-list" ref={ref}>
+      <div
+        className="message-list"
+      // ref={ref}
+      >
         <div className="join-room">
         &larr; Join a room!
         </div>
@@ -36,7 +39,10 @@ const MessageList = ({ roomId, roomName, messages }) => {
   }
 
   return (
-    <div className="message-list" ref={ref}>
+    <div
+      className="message-list"
+    // ref={ref}
+    >
       <h2>{roomName}</h2>
       <div>
         {
