@@ -49,7 +49,7 @@ const App = () => {
     currentUser.subscribeToRoom({
       roomId: roomID,
       hooks: {
-        onNewMessage: (message) => setMessages([...messages, message]),
+        onMessage: (message) => setMessages([...messages, message]),
       },
     })
       .then((room) => {
@@ -62,7 +62,6 @@ const App = () => {
 
   const sendMessage = (text) => {
     currentUser.sendMessage({
-      senderId: currentUser.id,
       text,
       roomId,
     });
