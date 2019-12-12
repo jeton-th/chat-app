@@ -1,6 +1,6 @@
 .new-room-form {
-  flex-basis: 10%;
-  min-height: 60px;
+  flex-basis: 11%;
+  flex-shrink: 0;
   background-color: #4ccc70;
   border-bottom-left-radius: 10px;
   display: flex;
@@ -9,13 +9,13 @@
   form {
     display: flex;
     justify-content: center;
-    height: 50%;
+    height: 40%;
     width: 100%;
   }
   input {
-    // background-color: #eff1f5;
     border: 1px solid #eff1f5;
     border-radius: 4px;
+    font-size: 16px;
     padding: 0 5px;
     outline: none;
     width: 80%;
@@ -25,5 +25,6 @@
 @media screen and (max-width: 768px) {
   .new-room-form {
     border-bottom-left-radius: 0;
+    flex-basis: 30%;
   }
 }
