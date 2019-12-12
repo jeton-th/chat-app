@@ -70,6 +70,16 @@ const App = () => {
     });
   };
 
+  const createRoom = (name) => {
+    currentUser.createRoom({
+      name,
+    })
+      .then((room) => {
+        subscribeToRoom(room.id);
+      })
+      .catch((err) => err);
+  };
+
   return (
     <div className="app">
       <div className="rooms">
@@ -78,7 +88,7 @@ const App = () => {
           rooms={[...joinableRooms, ...joinedRooms]}
           roomId={roomId}
         />
-        <NewRoomForm />
+        <NewRoomForm createRoom={createRoom} />
       </div>
       <div className="messages">
         <MessageList
