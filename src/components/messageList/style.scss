@@ -1,6 +1,6 @@
 .message-list {
   flex-basis: 90%;
-  background-color: #fefefa;
+  background-color: #eeeeee;
   box-sizing: border-box;
   padding: 20px;
   overflow: scroll;
@@ -8,7 +8,9 @@
   position: relative;
   h2 {
     margin: 0;
-    position: absolute;
+    position: sticky;
+    text-align: right;
+    // background: #eeeeee;
     top: 0;
     right: 5px;
   }

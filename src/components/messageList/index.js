@@ -44,17 +44,15 @@ const MessageList = ({ roomId, roomName, messages }) => {
     // ref={ref}
     >
       <h2>{roomName}</h2>
-      <div>
-        {
-          messages.map((message) => (
-            <Message
-              key={message.id}
-              username={message.senderId}
-              text={message.text}
-            />
-          ))
+      {
+        messages.map((message) => (
+          <Message
+            key={message.id}
+            username={message.senderId}
+            text={message.text}
+          />
+        ))
         }
-      </div>
     </div>
   );
 };

@@ -1,0 +1,19 @@
+.message {
+  margin: 5px 0;
+  padding: 5px 10px;
+  max-width: 80%;
+  background: #ffffff;
+  box-shadow: 0 0 3px rgba($color: #000000, $alpha: 0.1);
+  border-radius: 10px;
+  float: left;
+  clear: both;
+}
+
+.message-username {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.message-text {
+  line-height: 1.5em;
+}
