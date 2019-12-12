@@ -4,7 +4,7 @@
   border-top-right-radius: 10px;
   box-sizing: border-box;
   padding: 0 20px;
-  overflow: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   position: relative;
   h3 {
@@ -28,5 +28,17 @@
     background-color: #4ccc70;
     border-top-right-radius: 10px;
     outline: 1px solid slategrey;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .message-list {  
+    &::-webkit-scrollbar-track {
+      border-top-right-radius: 0;
+    }
+     
+    &::-webkit-scrollbar-thumb {
+      border-top-right-radius: 0;
+    }
   }
 }

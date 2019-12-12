@@ -13,6 +13,7 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
+  const [roomsToggle, setRoomsToggle] = useState(false);
 
   useEffect(() => {
     const chatManager = new Chatkit.ChatManager({
@@ -80,17 +81,20 @@ const App = () => {
       .catch((err) => err);
   };
 
+  const toggleRooms = () => setRoomsToggle((prevRoomsToggle) => !prevRoomsToggle);
+
   return (
     <div className="app">
-      <div className="rooms">
+      <div className={`rooms ${roomsToggle && 'toggle'}`}>
         <RoomList
           subscribeToRoom={subscribeToRoom}
           rooms={[...joinableRooms, ...joinedRooms]}
           roomId={roomId}
+          toggleRooms={toggleRooms}
         />
         <NewRoomForm createRoom={createRoom} />
       </div>
-      <div className="messages">
+      <div className={`messages ${roomsToggle && 'toggle-messages'}`}>
         <MessageList
           roomId={roomId}
           roomName={roomName}
