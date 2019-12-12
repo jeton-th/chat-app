@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
 
 const NewRoomForm = ({ createRoom }) => {
   const [roomName, setRoomName] = useState('');
@@ -21,10 +22,9 @@ const NewRoomForm = ({ createRoom }) => {
           value={roomName}
           onChange={handleChange}
           type="text"
-          placeholder="Create a room"
+          placeholder="Create A Room"
           required
         />
-        <button id="create-room-btn" type="submit">+</button>
       </form>
     </div>
   );

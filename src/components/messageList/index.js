@@ -32,7 +32,7 @@ const MessageList = ({ roomId, roomName, messages }) => {
       // ref={ref}
       >
         <div className="join-room">
-        &larr; Join a room!
+          &larr; Join a room!
         </div>
       </div>
     );
@@ -43,7 +43,7 @@ const MessageList = ({ roomId, roomName, messages }) => {
       className="message-list"
     // ref={ref}
     >
-      <h2>{roomName}</h2>
+      <h3>{roomName}</h3>
       {
         messages.map((message) => (
           <Message

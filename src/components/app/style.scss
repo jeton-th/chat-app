@@ -4,12 +4,12 @@ body {
 }
 
 .app {
-  border: 2px solid #777;
+  border-radius: 10px;
+  box-shadow: 0 0 14px rgba(0,0,0, .3);
   display: flex;
   margin: 50px auto;
-  width: 650px;
+  width: 800px;
   height: 600px;
-  background: #97d1e2;
   .rooms {
     flex-basis: 30%;
     display: flex;

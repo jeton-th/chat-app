@@ -1,5 +1,7 @@
 .send-message-form {
-  border: 1px solid #777;
+  background-color: #eff1f5;
+  // border-top: 2px solid #4ccc70;
+  border-bottom-right-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,5 +9,9 @@
   input {
     height: 50%;
     width: 80%;
+    border: 2px solid #4ccc70;
+    border-radius: 4px;
+    padding: 0 5px;
+    outline: none;
   }
 }

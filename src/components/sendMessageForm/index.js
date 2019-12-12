@@ -21,7 +21,7 @@ const SendMessageForm = ({ disabled, sendMessage }) => {
       <input
         type="text"
         value={message}
-        placeholder="SendMessageForm"
+        placeholder="Type A Message"
         disabled={disabled}
         onChange={handleChange}
       />

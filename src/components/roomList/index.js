@@ -7,8 +7,8 @@ const RoomList = ({ subscribeToRoom, rooms, roomId }) => {
 
   return (
     <div className="rooms-list">
+      <h3>Rooms</h3>
       <ul>
-        <h3>Your rooms:</h3>
         {orderedRooms.map((room) => {
           const active = room.id === roomId ? 'active' : '';
           return (
