@@ -83,24 +83,32 @@ const App = () => {
 
   const toggleRooms = () => setRoomsToggle((prevRoomsToggle) => !prevRoomsToggle);
 
+  const handleSubscribe = (id) => {
+    subscribeToRoom(id);
+    toggleRooms();
+  };
+
   return (
     <div className="app">
-      <div className={`rooms ${roomsToggle && 'toggle'}`}>
+      <div className="rooms">
         <h3>Rooms</h3>
         <button
           type="button"
           className="list-button"
-          onClick={() => toggleRooms()}
+          onClick={toggleRooms}
         >
           Arrow
         </button>
         <RoomList
-          subscribeToRoom={subscribeToRoom}
+          handleSubscribe={handleSubscribe}
           rooms={[...joinableRooms, ...joinedRooms]}
           roomId={roomId}
-          toggleRooms={toggleRooms}
+          roomsToggle={roomsToggle}
         />
-        <NewRoomForm createRoom={createRoom} />
+        <NewRoomForm
+          createRoom={createRoom}
+          roomsToggle={roomsToggle}
+        />
       </div>
       <div className={`messages ${roomsToggle && 'toggle-messages'}`}>
         <MessageList

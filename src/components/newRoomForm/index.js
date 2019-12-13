@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const NewRoomForm = ({ createRoom }) => {
+const NewRoomForm = ({ createRoom, roomsToggle }) => {
   const [roomName, setRoomName] = useState('');
 
   const handleChange = (e) => {
@@ -16,7 +16,7 @@ const NewRoomForm = ({ createRoom }) => {
   };
 
   return (
-    <div className="new-room-form">
+    <div className={`new-room-form ${roomsToggle && 'toggle'}`}>
       <form onSubmit={handleSubmit}>
         <input
           value={roomName}
@@ -32,6 +32,7 @@ const NewRoomForm = ({ createRoom }) => {
 
 NewRoomForm.propTypes = {
   createRoom: PropTypes.func.isRequired,
+  roomsToggle: PropTypes.bool.isRequired,
 };
 
 export default NewRoomForm;
