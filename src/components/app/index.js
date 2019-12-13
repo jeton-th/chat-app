@@ -86,6 +86,14 @@ const App = () => {
   return (
     <div className="app">
       <div className={`rooms ${roomsToggle && 'toggle'}`}>
+        <h3>Rooms</h3>
+        <button
+          type="button"
+          className="list-button"
+          onClick={() => toggleRooms()}
+        >
+          Arrow
+        </button>
         <RoomList
           subscribeToRoom={subscribeToRoom}
           rooms={[...joinableRooms, ...joinedRooms]}

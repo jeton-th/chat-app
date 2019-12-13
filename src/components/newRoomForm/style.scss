@@ -1,30 +1,29 @@
 .new-room-form {
-  flex-basis: 11%;
-  flex-shrink: 0;
-  background-color: #4ccc70;
+  display: none;
   border-bottom-left-radius: 10px;
-  display: flex;
   justify-content: center;
   align-items: center;
+
   form {
     display: flex;
     justify-content: center;
-    height: 40%;
-    width: 100%;
-  }
-  input {
-    border: 1px solid #eff1f5;
-    border-radius: 4px;
-    font-size: 16px;
-    padding: 0 5px;
-    outline: none;
-    width: 80%;
+    height: 50px;
+    
+    input {
+      border: 1px solid #eff1f5;
+      border-radius: 4px;
+      font-size: 16px;
+      margin: 10px 0;
+      padding: 0 5px;
+      outline: none;
+      width: 80%;
+    }
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .new-room-form {
+    display: flex;
     border-bottom-left-radius: 0;
-    flex-basis: 30%;
   }
 }

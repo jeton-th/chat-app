@@ -4,48 +4,51 @@ body {
 }
 
 .app {
+  box-sizing: border-box;
+  height: calc(100vh - 30px);
+  max-width: 800px;
+  margin: 15px;
   border-radius: 10px;
   box-shadow: 0 0 14px rgba(0,0,0, .3);
   display: flex;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 800px;
-  height: 90vh;
+  flex-direction: column;  
 }
 
 .rooms {
-  flex-basis: 30%;
   display: flex;
   flex-direction: column;
+  background-color: #4ccc70;
 }
 
 .messages {
-  flex-basis: 70%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.toggle {
-  flex-basis: 10%;
-  .rooms-list {
-    flex-basis: 100%;
-  }
-  ul,
-  .new-room-form {
-    display: none;
-  }
-}
+// .toggle {
+//   flex-basis: 10%;
+//   .rooms-list {
+//     flex-basis: 100%;
+//   }
+//   ul,
+//   .new-room-form {
+//     display: none;
+//   }
+// }
 
-.toggle-messages {
-  flex-basis: 90%;
-}
+// .toggle-messages {
+//   flex-basis: 90%;
+// }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .app {
-    flex-direction: column;
+    margin: 15px auto;
+    flex-direction: row;
   }
 
-  .messages {
-    overflow-y: auto;
+  .rooms {
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
   }
 }

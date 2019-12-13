@@ -1,11 +1,11 @@
 .message-list {
-  flex-basis: 90%;
+  flex-grow: 1;
+  overflow-y: scroll;
   background-color: #eff1f5;
   border-top-right-radius: 10px;
   box-sizing: border-box;
   padding: 0 20px;
-  overflow-y: auto;
-  overflow-x: hidden;
+
   h3 {
     color: #24a549;
     font-size: 20px;

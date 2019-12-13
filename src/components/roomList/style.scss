@@ -1,37 +1,41 @@
+h3 {
+  font-size: 20px;
+  text-align: center;
+}
+
 .rooms-list {
+  flex-grow: 1;
+  list-style: none;
+  max-height: 100px;
+  overflow-y: auto;
   position: relative;
   border-top-left-radius: 10px;
-  background-color: #4ccc70;
-  overflow-x: hidden;
-  overflow-y: auto;
   color: #eff1f5;
-  flex-basis: 90%;
-  h3 {
-    font-size: 20px;
-    text-align: center;
-    background-color: #4ccc70;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-    li {
-      padding-left: 10px;
-      margin: 5px 0;
-      button {
-        background: none;
-        border: none;
-        color: #eff1f5;
-        cursor: pointer;
-        font-size: 18px;
-        outline: none;
-        transition: transform .1s ease-in-out;
-      }
+  padding: 0;
+
+  li {
+    padding-left: 10px;
+    margin: 5px 0;
+    button {
+      background: none;
+      border: none;
+      color: #eff1f5;
+      cursor: pointer;
+      font-size: 18px;
+      outline: none;
+      transition: transform .1s ease-in-out;
     }
   }
 }
 
-.list-button {
+.rooms-list {
   display: none;
+}
+
+.list-button {
+  display: block;
+  position: absolute;
+  top: 35px; right: 30px;
 }
 
 .active {
@@ -40,24 +44,21 @@
   transform: translateX(10px);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .rooms-list {
+    display: block;
+    max-height: none;
     border-top-right-radius: 10px;
-    flex-basis: 70%;
+
     h3 {
       top: 0;
       margin: 0;
       padding-top: 20px;
       position: sticky;
     }
-    ul {
-      height: 0;
-    }
   }
 
   .list-button {
-    display: block;
-    position: absolute;
-    top: 22px; right: 15px;
+    display: none;
   }
 }
