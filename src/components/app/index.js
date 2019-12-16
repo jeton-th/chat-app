@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Chatkit from '@pusher/chatkit-client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import RoomList from '../roomList';
 import MessageList from '../messageList';
 import NewRoomForm from '../newRoomForm';
@@ -97,7 +99,7 @@ const App = () => {
           className="list-button"
           onClick={toggleRooms}
         >
-          Arrow
+          <FontAwesomeIcon icon={roomsToggle ? faCaretUp : faCaretDown} />
         </button>
         <RoomList
           handleSubscribe={handleSubscribe}
