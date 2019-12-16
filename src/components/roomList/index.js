@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const RoomList = ({
-  handleSubscribe, rooms, roomId, roomsToggle,
+  subscribeToRoom, rooms, roomId, roomsToggle,
 }) => {
   const orderedRooms = [...rooms].sort((a, b) => a.id > b.id);
 
@@ -16,7 +16,7 @@ const RoomList = ({
             <button
               type="button"
               className={`room ${active}`}
-              onClick={() => handleSubscribe(room.id)}
+              onClick={() => subscribeToRoom(room.id)}
             >
               {room.name}
             </button>
@@ -32,7 +32,7 @@ RoomList.defaultProps = {
 };
 
 RoomList.propTypes = {
-  handleSubscribe: PropTypes.func.isRequired,
+  subscribeToRoom: PropTypes.func.isRequired,
   rooms: PropTypes.arrayOf(PropTypes.object).isRequired,
   roomId: PropTypes.string,
   roomsToggle: PropTypes.bool.isRequired,

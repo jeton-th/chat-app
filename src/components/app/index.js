@@ -47,6 +47,10 @@ const App = () => {
     getRooms();
   }, [currentUser, getRooms]);
 
+  const toggleRooms = () => {
+    setRoomsToggle((prevRoomsToggle) => !prevRoomsToggle);
+  };
+
   const subscribeToRoom = (id) => {
     setMessages([]);
 
@@ -62,6 +66,7 @@ const App = () => {
         setRoomId(room.id);
         setRoomName(room.name);
         getRooms();
+        toggleRooms();
       })
       .catch((err) => err);
   };
@@ -83,13 +88,6 @@ const App = () => {
       .catch((err) => err);
   };
 
-  const toggleRooms = () => setRoomsToggle((prevRoomsToggle) => !prevRoomsToggle);
-
-  const handleSubscribe = (id) => {
-    subscribeToRoom(id);
-    toggleRooms();
-  };
-
   return (
     <div className="app">
       <div className="rooms">
@@ -102,7 +100,7 @@ const App = () => {
           <FontAwesomeIcon icon={roomsToggle ? faCaretUp : faCaretDown} />
         </button>
         <RoomList
-          handleSubscribe={handleSubscribe}
+          subscribeToRoom={subscribeToRoom}
           rooms={[...joinableRooms, ...joinedRooms]}
           roomId={roomId}
           roomsToggle={roomsToggle}
