@@ -5,8 +5,9 @@ body {
 
 .app {
   box-sizing: border-box;
+  height: calc(100vh - 150px);
   max-width: 800px;
-  margin: 15px;
+  margin: 50px 15px;
   border-radius: 10px;
   box-shadow: 0 0 14px rgba(0,0,0, .3);
   display: flex;
@@ -20,6 +21,7 @@ body {
   background-color: #4ccc70;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  position: relative;
 
   h3 {
     font-size: 20px;
@@ -33,12 +35,22 @@ body {
   flex-direction: column;
 }
 
+.list-button {
+  display: block;
+  position: absolute;
+  top: 20px; right: 30px;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #eff1f5;
+  font-size: 1.2em;
+}
+
 @media screen and (min-width: 768px) {
   .app {
     border-top-right-radius: 10px;
     margin: 15px auto;
     flex-direction: row;
-    height: calc(100vh - 150px);
   }
 
   .rooms {

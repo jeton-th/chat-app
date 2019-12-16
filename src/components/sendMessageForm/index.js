@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
 import './style.scss';
 
 const SendMessageForm = ({ disabled, sendMessage }) => {
   const [message, setMessage] = useState('');
 
-  const handleChange = (e) => setMessage(e.target.value);
+  const handleChange = (e) => setMessage(e.target.value.trim());
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!message) return;
     sendMessage(message);
     setMessage('');
   };
@@ -25,6 +28,11 @@ const SendMessageForm = ({ disabled, sendMessage }) => {
         disabled={disabled}
         onChange={handleChange}
       />
+      <button
+        type="submit"
+      >
+        <FontAwesomeIcon icon={faArrowAltCircleUp} />
+      </button>
     </form>
   );
 };

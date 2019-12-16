@@ -3,16 +3,13 @@
   list-style: none;
   max-height: 100px;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   color: #eff1f5;
   padding: 0;
 
   &::-webkit-scrollbar {
     width: 1em;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -22,8 +19,11 @@
   }
 
   li {
-    padding-left: 10px;
+    padding: 0 10px;
     margin: 5px 0;
+    max-width: 200px;
+    word-break: break-all; 
+    
     button {
       background: none;
       border: none;
@@ -31,6 +31,7 @@
       cursor: pointer;
       font-size: 18px;
       outline: none;
+      text-align: left;
       transition: transform .1s ease-in-out;
     }
   }
@@ -42,17 +43,6 @@
   &.toggle {
     display: block;
   }
-}
-
-.list-button {
-  display: block;
-  position: absolute;
-  top: 35px; right: 30px;
-  background: transparent;
-  outline: none;
-  border: none;
-  color: #eff1f5;
-  font-size: 1.2em;
 }
 
 .active {
