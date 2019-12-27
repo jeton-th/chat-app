@@ -19,7 +19,8 @@ const MessageList = ({ roomId, roomName, messages }) => {
         className="message-list"
       >
         <div className="join-room">
-          &larr; Join a room!
+          <span className="arrow" />
+          <span>Join a room!</span>
         </div>
       </div>
     );

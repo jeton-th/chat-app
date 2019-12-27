@@ -16,6 +16,21 @@
     right: 5px;
   }
 
+  .join-room {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #24a549;
+
+    .arrow::before {
+      content: "\f062";
+      font-family: "Font Awesome 5 Free"; 
+      font-weight: 900; 
+      margin-right: 10px;
+    }
+  }
+
   &::-webkit-scrollbar {
     width: 1em;
   }
@@ -42,6 +57,12 @@
 
     &::-webkit-scrollbar-thumb {
       border-top-right-radius: 10px;
+    }
+
+    .join-room {
+      .arrow::before {
+        content: "\f060";
+      }
     }
   }
 }
