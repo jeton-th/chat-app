@@ -1,35 +1,22 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Message from '../message';
 import './style.scss';
 
 const MessageList = ({ roomId, roomName, messages }) => {
-  // let node;
-  // let shouldScroll;
+  const ref = useRef(null);
 
-  // if (node) {
-  //   shouldScroll = useRef(
-  //     node.scrollTop + node.clientHeight + 100 >= node.scrollHeight,
-  //   );
-  // }
-
-  // useEffect(() => {
-  //   if (!shouldScroll.current) return;
-  //   node.scrollTop = node.scrollHeight;
-  // });
-
-  // const ref = useRef(null);
-
-  // useEffect(() => {
-  // console.log(ref.current.scrollTop);
-  // `ref.current` now refers to the first non-empty child
-  // }, []);
+  useEffect(() => {
+    if (!roomId) return;
+    const node = ref.current;
+    const shouldScroll = node.scrollTop + node.clientHeight + 500 >= node.scrollHeight;
+    if (shouldScroll) node.scrollTop = node.scrollHeight;
+  }, [roomId, messages]);
 
   if (!roomId) {
     return (
       <div
         className="message-list"
-      // ref={ref}
       >
         <div className="join-room">
           &larr; Join a room!
@@ -41,7 +28,7 @@ const MessageList = ({ roomId, roomName, messages }) => {
   return (
     <div
       className="message-list"
-    // ref={ref}
+      ref={ref}
     >
       <h3>{roomName}</h3>
       {
